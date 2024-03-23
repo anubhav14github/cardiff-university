@@ -16,7 +16,9 @@ const ProgramPage = ({ handleBackToTopics, selectedTopicId }) => {
 
   const filteredPrograms = selectedTopic
     ? selectedTopic.programs.filter((program) =>
-        program.title.toLowerCase().includes(searchTerm.toLowerCase())
+        program.programType.type
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase())
       )
     : [];
 
@@ -34,13 +36,19 @@ const ProgramPage = ({ handleBackToTopics, selectedTopicId }) => {
           >
             Back to Topics
           </button>
-          <input
-            type="text"
-            placeholder="Search programs..."
-            className="border border-gray-300 rounded-md py-2 px-3 ml-4"
-            value={searchTerm}
-            onChange={handleSearch}
-          />
+          <div>
+            <p className="ml-4">
+              Search based on ProgramType - Tour, Advice, Talk, Display, Film,
+              Q&A, Lunch, Demo, Workshop
+            </p>
+            <input
+              type="text"
+              placeholder="Search here..."
+              className="border border-gray-300 rounded-md py-2 px-3 ml-4 mt-2"
+              value={searchTerm}
+              onChange={handleSearch}
+            />
+          </div>
         </div>
         <div className="mt-2 grid grid-cols-1 gap-4">
           {filteredPrograms.map((program) => (
